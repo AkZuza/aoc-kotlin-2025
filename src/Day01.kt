@@ -1,21 +1,25 @@
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
+  val rotations = readInput("Day01.txt")
+  var currentRotation = 50
+  var passcode = 0;
+
+  for (rotation in rotations) {
+    val direction = if (rotation[0] == 'L') -1 else 1
+    val distance = rotation.substring(1).toIntOrNull() ?: 0
+
+    for ( i in 1..distance) {
+      currentRotation += direction
+
+      if(currentRotation == -1) {
+        currentRotation = 99
+      } else if (currentRotation >= 100) {
+        currentRotation = 0
+        passcode += 1
+      } else if (currentRotation == 0) {
+        passcode += 1
+      }
     }
+  }
 
-    fun part2(input: List<String>): Int {
-        return input.size
-    }
-
-    // Test if implementation meets criteria from the description, like:
-    check(part1(listOf("test_input")) == 1)
-
-    // Or read a large test input from the `src/Day01_test.txt` file:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
-    // Read the input from the `src/Day01.txt` file.
-    val input = readInput("Day01")
-    part1(input).println()
-    part2(input).println()
+  println("Passcode is $passcode")
 }
