@@ -1,8 +1,12 @@
 import kotlin.math.max
 
 fun main() {
-    genericSolution(12)
+    part1()
+    part2()
 }
+
+fun part1() = genericSolution(2)
+fun part2() = genericSolution(12)
 
 fun part1BF() {
     val banks = readInput("Day03")
